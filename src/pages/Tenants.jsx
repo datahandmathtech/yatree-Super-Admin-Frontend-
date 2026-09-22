@@ -26,8 +26,10 @@ const Tenants = () => {
   const [showModal, setShowModal] = useState(false)
   const [editingTenant, setEditingTenant] = useState(null)
   const [formData, setFormData] = useState({
-    companyName: '',
-    ownerName: '',
+    crmType: 'LogKaro Fleet',
+      crmType: 'LogKaro Fleet',
+          companyName: '',
+          ownerName: '',
     email: '',
     phone: '',
     whatsappNumber: '',
@@ -83,6 +85,7 @@ const Tenants = () => {
     if (tenant) {
       setEditingTenant(tenant)
       setFormData({
+        crmType: tenant.crmType || 'LogKaro Fleet',
         companyName: tenant.companyName || '',
         ownerName: tenant.ownerName || '',
         email: tenant.email || '',
@@ -114,8 +117,9 @@ const Tenants = () => {
     } else {
       setEditingTenant(null)
       setFormData({
-        companyName: '',
-        ownerName: '',
+        crmType: 'LogKaro Fleet',
+          companyName: '',
+          ownerName: '',
         email: '',
         phone: '',
         whatsappNumber: '',
@@ -404,6 +408,13 @@ const Tenants = () => {
 
                   <div className="grid grid-cols-2 gap-8">
                     <div className="space-y-2">
+                      <label className="text-[10px] font-black text-slate-400 uppercase tracking-[2px] ml-1">CRM Product Type</label>
+                      <select className="w-full bg-slate-50 border border-slate-100 rounded-2xl p-5 text-sm font-black text-indigo-700 outline-none focus:border-indigo-600/30 transition-all appearance-none cursor-pointer mb-6" value={formData.crmType || 'LogKaro Fleet'} onChange={e => setFormData({ ...formData, crmType: e.target.value })}>
+                        <option value="LogKaro Fleet">LogKaro Fleet CRM</option>
+                        <option value="School Management">School Management CRM</option>
+                        <option value="Modified Fleet">Modified Fleet CRM</option>
+                      </select>
+                      
                       <label className="text-[10px] font-black text-slate-400 uppercase tracking-[2px] ml-1">Identity Website</label>
                       <input type="text" placeholder="www.client-origin.com" className="w-full bg-slate-50 border border-slate-100 rounded-2xl p-5 text-sm font-bold text-slate-900 outline-none focus:border-indigo-600/30 transition-all" value={formData.website} onChange={e => setFormData({ ...formData, website: e.target.value })} />
                     </div>
